@@ -77,7 +77,7 @@ export const Navbar = () => {
             width={32}
             height={32}
             className="h-8"
-            src={"/logo.webp"}
+            src={"./logo.webp"}
             alt="TechTerms Insights"
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white transition-colors duration-300 ease-in-out">
