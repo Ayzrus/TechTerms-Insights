@@ -1,101 +1,213 @@
-import Image from "next/image";
+"use client";
+import TermDefinition from "@/app/components/termos";
+import { motion } from "framer-motion";
+import Texto from "@/app/components/texto";
+
+const terms = [
+  {
+    term: "Soft skills",
+    definition:
+      "Habilidades interpessoais que incluem comunicação, empatia, trabalho em equipe e resolução de problemas.",
+    id: "SS",
+    image: "/images/ss.jpg",
+  },
+  {
+    term: "CRM",
+    definition:
+      "Sistema para gestão de relação com clientes, ajudando a melhorar as vendas, marketing e serviço ao cliente.",
+    id: "CRM",
+    image: "/images/crm.jpg",
+  },
+  {
+    term: "ERP",
+    definition:
+      "Sistema integrado que gerencia processos de negócio, como contabilidade, compras e produção.",
+    id: "ERP",
+    image: "/images/erp.jpg",
+  },
+  {
+    term: "MES",
+    definition:
+      "Sistema que controla e monitora o processo de produção em tempo real.",
+    id: "MES",
+    image: "/images/mes.jpg",
+  },
+  {
+    term: "SCM",
+    definition:
+      "Gestão da cadeia de fornecimento, desde a produção até a entrega do produto ao consumidor final.",
+    id: "SCM",
+    image: "/images/scm.jpg",
+  },
+  {
+    term: "WMS",
+    definition: "Sistema para gerenciar operações de armazém e estoque.",
+    id: "WMS",
+    image: "/images/wms.jpg",
+  },
+  {
+    term: "HRM",
+    definition:
+      "Gestão de recursos humanos, incluindo recrutamento, formação e desenvolvimento dos colaboradores.",
+    id: "HRM",
+    image: "/images/hrm.jpg",
+  },
+  {
+    term: "Big Data",
+    definition:
+      "Conjunto de dados muito grandes ou complexos para serem tratados por métodos tradicionais, exigindo técnicas avançadas de análise.",
+    id: "BigData",
+    image: "/images/bigdata.jpg",
+  },
+  {
+    term: "Cybersecurity",
+    definition:
+      "Prática de proteger sistemas, redes e programas contra ataques digitais.",
+    id: "Cybersecurity",
+    image: "/images/cybersecurity.jpg",
+  },
+  {
+    term: "IA (Inteligência Artificial)",
+    definition:
+      "Tecnologias que permitem que máquinas imitem a inteligência humana, como aprendizado e tomada de decisões.",
+    id: "IA",
+    image: "/images/ia.jpg",
+  },
+  {
+    term: "IoT (Internet of Things)",
+    definition:
+      "Rede de dispositivos físicos conectados à internet, que coletam e compartilham dados.",
+    id: "IoT",
+    image: "/images/iot.jpg",
+  },
+  {
+    term: "IIoT (Industrial Internet of Things)",
+    definition:
+      "Aplicativo da IoT no setor industrial para melhorar a eficiência e reduzir custos.",
+    id: "IIoT",
+    image: "/images/iiot.jpg",
+  },
+  {
+    term: "AR (Augmented Reality)",
+    definition:
+      "Tecnologia que sobrepõe elementos digitais ao mundo real, melhorando a experiência do usuário.",
+    id: "AR",
+    image: "/images/ar.jpg",
+  },
+  {
+    term: "VR (Virtual Reality)",
+    definition:
+      "Simulação de um ambiente tridimensional totalmente virtual, permitindo a imersão do usuário.",
+    id: "VR",
+    image: "/images/vr.jpg",
+  },
+  {
+    term: "B2B (Business to Business)",
+    definition: "Transações comerciais entre empresas.",
+    id: "B2B",
+    image: "/images/b2b.jpg",
+  },
+  {
+    term: "B2C (Business to Consumer)",
+    definition: "Transações comerciais entre empresas e consumidores finais.",
+    id: "B2C",
+    image: "/images/b2c.jpg",
+  },
+  {
+    term: "H2H (Human to Human)",
+    definition:
+      "Enfoque de negócios que valoriza a conexão humana em todas as interações comerciais.",
+    id: "H2H",
+    image: "/images/h2h.jpg",
+  },
+  {
+    term: "NFC (Near Field Communication)",
+    definition:
+      "Tecnologia de comunicação sem fio de curto alcance, usada para pagamentos e transferências de dados.",
+    id: "NFC",
+    image: "/images/nfc.jpg",
+  },
+  {
+    term: "RFID (Radio Frequency Identification)",
+    definition:
+      "Tecnologia que utiliza ondas de rádio para identificar e rastrear objetos.",
+    id: "RFID",
+    image: "/images/rfid.jpg",
+  },
+  {
+    term: "Bar Code",
+    definition:
+      "Código de barras, uma representação visual de dados legível por máquinas, usado para identificar produtos.",
+    id: "BarCode",
+    image: "/images/barcode.jpg",
+  },
+  {
+    term: "QR Code",
+    definition:
+      "Código de resposta rápida, que pode armazenar mais informações do que o código de barras e ser lido por smartphones.",
+    id: "QRCode",
+    image: "/images/qrcode.jpg",
+  },
+  {
+    term: "Blockchain",
+    definition:
+      "Tecnologia de registro distribuído que garante a segurança e transparência das transações digitais.",
+    id: "Blockchain",
+    image: "/images/blockchain.jpg",
+  },
+  {
+    term: "Data Science",
+    definition:
+      "Campo que utiliza métodos científicos, processos e sistemas para extrair informações de dados estruturados e não estruturados.",
+    id: "DataScience",
+    image: "/images/datascience.jpg",
+  },
+  {
+    term: "Cloud Computing",
+    definition:
+      "Uso de servidores remotos na internet para armazenar, gerenciar e processar dados, em vez de um servidor local ou um computador pessoal.",
+    id: "CloudComputing",
+    image: "/images/cloudcomputing.jpg",
+  },
+  {
+    term: "Deep Learning",
+    definition:
+      "Subconjunto de aprendizado de máquina que utiliza redes neurais artificiais para modelar e resolver problemas complexos.",
+    id: "DeepLearning",
+    image: "/images/deeplearning.jpg",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="pt-[70px] flex justify-center ml-2 mt-2 flex-col items-center">
+      {/* Grid de Cards */}
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl w-full"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        {terms.map((term) => (
+          <TermDefinition
+            key={term.id}
+            term={term.term}
+            definition={term.definition}
+            id={term.id}
+            image={term.image}
+          />
+        ))}
+      </motion.div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      {/* Texto abaixo dos cards */}
+      <motion.div
+        className="mt-10 px-4 py-6 max-w-4xl mx-auto rounded-lg shadow-lg text-lg text-gray-800"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 1, ease: "easeOut" }}
+      >
+        <Texto />
+      </motion.div>
     </div>
   );
 }
